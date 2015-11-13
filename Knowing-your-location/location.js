@@ -7,8 +7,7 @@
   });
 }
 var myPos = position.coords.latitude+","+position.coords.longitude;
-var img_url = "http://maps.googleapis.com/maps/api/staticmap?center=
-    "+latlon+"&zoom=18&size=400x400&sensor=false"
+var img_url = "http://maps.googleapis.com/maps/api/staticmap?center="+myPos+"&zoom=18&size=400x400&sensor=false"
     
   
 </script>
