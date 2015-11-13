@@ -8,6 +8,7 @@
 }
 var myPos = position.coords.latitude+","+position.coords.longitude;
 var img_url = "http://maps.googleapis.com/maps/api/staticmap?center="+myPos+"&zoom=18&size=400x400&sensor=false"
+document.getElementById("imageMap").src =img_url;
     
   
 </script>
