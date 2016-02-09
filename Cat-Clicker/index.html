@@ -1,1 +1,19 @@
+<html>
+<head>
+<title>Cat Clicker</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+</head>
+<body>
+<img src="cat.jpg" id="my-elem"/>
+<p id="click-count"></p>
+<script>
+var name =prompt("What's your name?");
+var count =0;
+$("#my-elem").click(function(){
+count++;
+document.getElementById("click-count").innerHTML = "Hello "+name+" ,you clicked on the cat "+count+ " times";
+});
 
+</script>
+</body>
+</html>
