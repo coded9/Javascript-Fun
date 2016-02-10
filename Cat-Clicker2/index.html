@@ -1,0 +1,36 @@
+<html>
+<head>
+<title>Cat Clicker</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+</head>
+<body>
+<div id="cat1">
+<img src="cat1.jpg" height ="200" id="my-elem1"/>
+<p class ="name" ></p>
+<p id="click-count1"></p>
+</div>
+<div id ="cat2">
+<img src="cat2.jpg" height ="200" id="my-elem2" />
+<p class ="name" ></p>
+<p id="click-count2"></p>
+</div>
+<script>
+var name =prompt("What's your name?");
+var catName1 = "Poplinre";
+var catName2 = "Chewie";
+var count1 =0;
+var count2 = 0;
+$("#my-elem1").click(function(){
+count1++;
+document.getElementsByClassName("name")[0].innerHTML = "Hello "+name+" ,my name is "+ catName1;
+document.getElementById("click-count1").innerHTML = "Hello "+name+" ,you clicked on the cat "+count1+ " times";
+});
+$("#my-elem2").click(function(){
+count2++;
+document.getElementsByClassName("name")[1].innerHTML = "Hello "+name+" ,my name is "+ catName2;
+document.getElementById("click-count2").innerHTML = "Hello "+name+" ,you clicked on the cat "+count2+ " times";
+});
+
+</script>
+</body>
+</html>
