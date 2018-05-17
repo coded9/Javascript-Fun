@@ -1,0 +1,57 @@
+/***
+Returns the aggregated array based on the facts and dimensions passed to the function
+*/
+
+var data = [ 
+        {CompanyCode:"0011",segment:"DZ", invoice_amount: 200, pastDueCount: 12}, 
+        {CompanyCode:"0011",segment:"DZ", invoice_amount: 500, pastDueCount: 17}, 
+        {CompanyCode:"0012",segment:"DZ", invoice_amount:100, pastDueCount: 15},
+		{CompanyCode:"0010",segment:"DT", invoice_amount: 200, pastDueCount: 12}, 
+        {CompanyCode:"0011",segment:"DT", invoice_amount: 500, pastDueCount: 17}
+];
+
+    function aggregate(arr, facts, dimensions) {
+        var tempAggregated =  {};
+        for (i=0;i<arr.length;i++) {
+              obj = arr[i];
+              var dimKey = '';  
+              for(j=0;j<dimensions.length;j++){
+                if(j==dimensions.length-1){
+                   dimKey += obj[dimensions[j]]
+                }else{
+                  dimKey += obj[dimensions[j]] + '$$'
+                }
+              }
+                if (!tempAggregated[dimKey]) { 
+                  tempAggregated[dimKey] = {};
+                  for(k=0;k<facts.length;k++){
+                    tempAggregated[dimKey][facts[k]] = obj[facts[k]];
+                  }
+                } else{
+                  for(k=0;k<facts.length;k++){
+                    tempAggregated[dimKey][facts[k]] += obj[facts[k]];
+                  }
+                }
+            } 
+        
+      var finalAggregatedArr = [];
+      for(var obj in tempAggregated){
+        var newAggregated = tempAggregated[obj];
+        var dimKeySplitted = obj.split('$$');
+        for(i=0;i<dimensions.length;i++){
+          newAggregated[dimensions[i]] = dimKeySplitted[i];
+        }
+        finalAggregatedArr.push(newAggregated)
+        newAggregated = {};
+      }  
+      return finalAggregatedArr;
+    }
+console.log("one fact,one dimension");
+console.log (aggregate(data, ['invoice_amount'], ['CompanyCode']));
+console.log("one fact, two dimensions");
+console.log (aggregate(data, ['pastDueCount'], ['CompanyCode','segment']));
+console.log("two facts, one dimension");
+console.log (aggregate(data, ['pastDueCount','invoice_amount'], ['segment']));
+console.log("two facts,two dimensions");
+console.log (aggregate(data, ['invoice_amount','pastDueCount'], ['CompanyCode','segment']));
+
